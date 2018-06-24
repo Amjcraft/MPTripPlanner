@@ -7,12 +7,14 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import GoogleMap from '@/components/GoogleMap.vue'
+import DetailsPanel from '@/components/DetailsPanel.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    GoogleMap,
+    DetailsPanel
   }
 }
 </script>
