@@ -1,13 +1,13 @@
 <template>
   <div class="login">
-      <input v-model="MPKey" placeholder="Your Mountain Project API Key">
-      <button v-on:click="submit">Submit<button/>
+      <input v-model="MPKey" placeholder="Your Mountain Project API Key"/>
+      <button v-on:click="submit">Submit</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Login',
   data: {
     MPKey: ""
   },
