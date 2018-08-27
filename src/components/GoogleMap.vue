@@ -1,17 +1,25 @@
 <template>
-  <div class="google-map">
-    <div class="google-map-container">
-    </div>
-  </div>
+  <GmapMap
+    :center="{lat:10, lng:10}"
+    :zoom="6"
+    map-type-id="terrain"
+    style="width: 100%; height: 500px"
+    >
+  <GoogleMapMarker />
+  </GmapMap>
 </template>
 
 <script>
-// @ is an alias to /src
-import GoogleMap from '@/components/GoogleMap.vue'
-import DetailsPanel from '@/components/DetailsPanel.vue'
-
+import {gmapApi} from 'vue2-google-maps'
+import GoogleMapMarker from '@/components/GoogleMapMarker.vue'
+ 
 export default {
-  name: 'googleMap'
+  computed: {
+    google: gmapApi
+  },
+  components: {
+    GoogleMapMarker
+  }
 }
 </script>
 
