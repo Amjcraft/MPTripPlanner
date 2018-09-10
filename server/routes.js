@@ -218,7 +218,7 @@ module.exports = function (app, db) {
         });
     });
 
-    app.post('/user/getMPToDoRoutes', (req, res) => {
+    app.get('api/user/getMPToDoRoutes', (req, res) => {
         const user = req.signedCookies['user'];
         console.log('getMP');
         console.log(user);
@@ -238,5 +238,53 @@ module.exports = function (app, db) {
                 return res.send(response);
             })
         });
-    });   
+    });
+    
+    app.get('api/user/getMPToDoRoutes', (req, res) => {
+        const user = req.signedCookies['user'];
+        console.log('getMP');
+        console.log(user);
+        if (!user.email || !user.key) {
+            return res.send({ 'error': 'Email and Key Required' });;
+        }
+        MP.getToDos(user.email, user.key, function (error, response, body) {
+            if (error) {
+                return res.send({ 'error': 'Mountain Project user To Dos Not found' });
+            }
+
+            MP.getRoutes(response.toDos, user.key, function (error, response, body) {
+                if (error) {
+                    return res.send({ 'error': 'Mountain Project user To Dos + Routes Not found' });
+                }
+
+                return res.send(response);
+            })
+        });
+    }); 
+    
+    app.post('/api/getRoutesForLatLon', (req, res) => {
+        const params = req.body;
+        
+        console.log(req.signedCookies);
+        res.send('Hit');
+        return
+        //Check for cookie Key
+        if (!user.email && !user.key) {
+            const key = '';
+            res.send({ 'error': 'Email and Key Required', 'stack': user });
+            return;
+        }
+
+        MP.getRoutesForLatLon(params, key, function (error, response, body) {
+            if (error) {
+                res.send({ 'error': 'Mountain Project getRoutesForLatLon', 'message': error });
+                return;
+            }
+            console.log('Success Get Routes');
+           
+            res.send(response);
+            return;
+        })
+      
+    });
 };

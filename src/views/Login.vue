@@ -9,44 +9,7 @@
 <script>
 import axios from 'axios'
 
-const API = {
-    login: function (user) {
-        if (!user.email || !user.key) {
-            return new error('User info incorrect')
-        }
-        const loginRequest = axios.create({
-          timeout: 10000,
-          withCredentials: true,
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          proxy: {
-            host: '127.0.0.1',
-            port: 8000
-          },
-        });
-        axios.defaults.headers.post['Content-Type'] = 'application/json';
-        //axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-        axios.defaults.withCredentials = true;
-        // axios.defaults.headers.
-        const postData = {
-            email: user.email,
-            key: user.key
-        };
 
-        return axios.post('http://localhost:8000/api/user/login', postData)
-        .then(function (response) {
-            console.log('User Login Yeah!!');
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-        .then(function () {
-            // always executed
-        });
-    }
-};
 
 export default {
   name: 'Login',

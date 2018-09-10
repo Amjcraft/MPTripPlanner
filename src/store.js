@@ -1,15 +1,24 @@
-var store = {
-    debug: true,
-    state: {
-        user: {},
-        route: {}
-    },
-    setUserAction(newValue) {
-        if (this.debug) console.log('setMessageAction triggered with', newValue)
-        this.state.user = user
-    },
-    clearMessageAction() {
-        if (this.debug) console.log('clearMessageAction triggered')
-        this.state.message = ''
+let Store = {
+  debug: true,
+  state: {
+    user: {},
+    activeRoute: {},
+    detailsPanel: {
+      active: false
     }
-}
+  },
+  openDeatilsPanel() {
+    this.state.detailsPanel.active = true;
+  },
+  closeDeatilsPanel() {
+    this.state.detailsPanel.active = false;
+  },
+  setActiveRoute(route) {
+      this.state.activeRoute = route;
+  },
+  setUser(user) {
+      this.state.user = user;
+  }
+};
+
+export default Store

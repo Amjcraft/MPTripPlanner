@@ -54,7 +54,12 @@ module.exports =  {
 
     getRoutesForLatLon: function(obj, key, callback) {
         //https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=40.03&lon=-105.25&maxDistance=10&minDiff=5.6&maxDiff=5.10&key=200267803-23ebba148e606f07a637b8532e845c77
-        var url = mountainProjectBaseURL + 'get-routes-for-lat-lon?lat=' + obj.lat + '&Lon=' + obj.long + '&key=' + key;
+        var queryString = '';
+        for (var key in obj) {
+            queryString += key + '=' + obj[key];
+        }
+
+        var url = mountainProjectBaseURL + 'get-routes-for-lat-lon? ' + queryString;
         request(url , function (error, response, body) {
 
             return callback(error, response, body);
